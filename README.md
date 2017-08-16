@@ -61,11 +61,11 @@
 
 最后说一下目前写的几个问题，希望大家可以一起来优化：
 
-1. 没有处理`View`点击事件，即没有写`delegate`回调。
+- [x] 没有处理`View`点击事件，即没有写`delegate`回调。
 
-2. 二分法查找合适位置的时候算法待优化。
+- [ ] 二分法查找合适位置的时候算法待优化。
 
-3. 从旧的`visibleViews`中移除被滑出的`View`算法待优化。
+- [ ] 从旧的`visibleViews`中移除被滑出的`View`算法待优化。
 
 贴一段第二个问题的代码：
 ```
@@ -113,3 +113,19 @@
         [view removeFromSuperview];
     }
 ```
+
+##项目引用
+已经支持`cocoapods`，在`Podfile`中添加 `pod 'LazyScrollView'`然后`pod update`即可。
+
+##更新记录
+* **2016.12.27 新增`delegate`**
+
+	新增了`@protocol LazyScrollViewDelegate <NSObject, UIScrollViewDelegate>`。其中有一个接口：
+	
+	```
+	@optional
+	- (void)scrollView:(LazyScrollView *)scrollView didClickItemAtLsvId:(NSString *)lsvId;
+	```
+	由于`lsvId`在`ScrollView`中是唯一了，这里就没有使用`index`了。
+	
+* **2016.12.04 实现基本功能**
